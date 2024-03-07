@@ -1,0 +1,606 @@
+object RT: TRT
+  Left = 2015
+  Height = 585
+  Top = -706
+  Width = 290
+  Caption = 'RT'
+  ClientHeight = 585
+  ClientWidth = 290
+  OnCreate = FormCreate
+  LCLVersion = '3.0.0.2'
+  object COMselectCB: TComboBox
+    Left = 8
+    Height = 23
+    Top = 8
+    Width = 100
+    ItemHeight = 15
+    TabOrder = 0
+  end
+  object ConnectBtn: TButton
+    Left = 135
+    Height = 25
+    Top = 10
+    Width = 75
+    Caption = 'Connect'
+    TabOrder = 1
+    OnClick = ConnectBtnClick
+  end
+  object GroupBox1: TGroupBox
+    Left = 8
+    Height = 400
+    Top = 48
+    Width = 272
+    Caption = 'Cycle timing'
+    ClientHeight = 380
+    ClientWidth = 268
+    TabOrder = 2
+    object Label1: TLabel
+      Left = 8
+      Height = 15
+      Top = 8
+      Width = 35
+      Caption = 'Step 1:'
+    end
+    object Step1Min: TSpinEdit
+      Left = 56
+      Height = 23
+      Top = 4
+      Width = 66
+      MaxValue = 720
+      TabOrder = 0
+    end
+    object Step1Sec: TSpinEdit
+      Left = 168
+      Height = 23
+      Top = 4
+      Width = 66
+      MaxValue = 59
+      TabOrder = 1
+    end
+    object Label2: TLabel
+      Left = 128
+      Height = 15
+      Top = 8
+      Width = 21
+      Caption = 'Min'
+    end
+    object Label3: TLabel
+      Left = 240
+      Height = 15
+      Top = 8
+      Width = 18
+      Caption = 'Sec'
+    end
+    object Label4: TLabel
+      Left = 8
+      Height = 15
+      Top = 36
+      Width = 35
+      Caption = 'Step 2:'
+    end
+    object Step2Min: TSpinEdit
+      Left = 56
+      Height = 23
+      Top = 32
+      Width = 66
+      MaxValue = 720
+      TabOrder = 2
+    end
+    object Label5: TLabel
+      Left = 128
+      Height = 15
+      Top = 36
+      Width = 21
+      Caption = 'Min'
+    end
+    object Step2Sec: TSpinEdit
+      Left = 168
+      Height = 23
+      Top = 32
+      Width = 66
+      MaxValue = 59
+      TabOrder = 3
+    end
+    object Label6: TLabel
+      Left = 240
+      Height = 15
+      Top = 36
+      Width = 18
+      Caption = 'Sec'
+    end
+    object Label7: TLabel
+      Left = 8
+      Height = 15
+      Top = 64
+      Width = 35
+      Caption = 'Step 3:'
+    end
+    object Step3Min: TSpinEdit
+      Left = 56
+      Height = 23
+      Top = 60
+      Width = 66
+      MaxValue = 720
+      TabOrder = 4
+    end
+    object Label8: TLabel
+      Left = 128
+      Height = 15
+      Top = 64
+      Width = 21
+      Caption = 'Min'
+    end
+    object Step3Sec: TSpinEdit
+      Left = 168
+      Height = 23
+      Top = 60
+      Width = 66
+      MaxValue = 59
+      TabOrder = 5
+    end
+    object Label9: TLabel
+      Left = 240
+      Height = 15
+      Top = 64
+      Width = 18
+      Caption = 'Sec'
+    end
+    object Label10: TLabel
+      Left = 8
+      Height = 15
+      Top = 92
+      Width = 35
+      Caption = 'Step 4:'
+    end
+    object Step4Min: TSpinEdit
+      Left = 56
+      Height = 23
+      Top = 88
+      Width = 66
+      MaxValue = 720
+      TabOrder = 6
+    end
+    object Label11: TLabel
+      Left = 128
+      Height = 15
+      Top = 92
+      Width = 21
+      Caption = 'Min'
+    end
+    object Step4Sec: TSpinEdit
+      Left = 168
+      Height = 23
+      Top = 88
+      Width = 66
+      MaxValue = 59
+      TabOrder = 7
+    end
+    object Label12: TLabel
+      Left = 240
+      Height = 15
+      Top = 92
+      Width = 18
+      Caption = 'Sec'
+    end
+    object Label13: TLabel
+      Left = 8
+      Height = 15
+      Top = 120
+      Width = 35
+      Caption = 'Step 5:'
+    end
+    object Step5Min: TSpinEdit
+      Left = 56
+      Height = 23
+      Top = 116
+      Width = 66
+      MaxValue = 720
+      TabOrder = 8
+    end
+    object Label14: TLabel
+      Left = 128
+      Height = 15
+      Top = 120
+      Width = 21
+      Caption = 'Min'
+    end
+    object Step5Sec: TSpinEdit
+      Left = 168
+      Height = 23
+      Top = 116
+      Width = 66
+      MaxValue = 59
+      TabOrder = 9
+    end
+    object Label15: TLabel
+      Left = 240
+      Height = 15
+      Top = 120
+      Width = 18
+      Caption = 'Sec'
+    end
+    object Label16: TLabel
+      Left = 8
+      Height = 15
+      Top = 148
+      Width = 35
+      Caption = 'Step 6:'
+    end
+    object Step6Min: TSpinEdit
+      Left = 56
+      Height = 23
+      Top = 144
+      Width = 66
+      MaxValue = 720
+      TabOrder = 10
+    end
+    object Label17: TLabel
+      Left = 128
+      Height = 15
+      Top = 148
+      Width = 21
+      Caption = 'Min'
+    end
+    object Step6Sec: TSpinEdit
+      Left = 168
+      Height = 23
+      Top = 144
+      Width = 66
+      MaxValue = 59
+      TabOrder = 11
+    end
+    object Label18: TLabel
+      Left = 240
+      Height = 15
+      Top = 148
+      Width = 18
+      Caption = 'Sec'
+    end
+    object Label19: TLabel
+      Left = 8
+      Height = 15
+      Top = 176
+      Width = 35
+      Caption = 'Step 7:'
+    end
+    object Step7Min: TSpinEdit
+      Left = 56
+      Height = 23
+      Top = 172
+      Width = 66
+      MaxValue = 720
+      TabOrder = 12
+    end
+    object Label20: TLabel
+      Left = 128
+      Height = 15
+      Top = 176
+      Width = 21
+      Caption = 'Min'
+    end
+    object Step7Sec: TSpinEdit
+      Left = 168
+      Height = 23
+      Top = 172
+      Width = 66
+      MaxValue = 59
+      TabOrder = 13
+    end
+    object Label21: TLabel
+      Left = 240
+      Height = 15
+      Top = 176
+      Width = 18
+      Caption = 'Sec'
+    end
+    object Label22: TLabel
+      Left = 8
+      Height = 15
+      Top = 204
+      Width = 35
+      Caption = 'Step 8:'
+    end
+    object Step8Min: TSpinEdit
+      Left = 56
+      Height = 23
+      Top = 200
+      Width = 66
+      MaxValue = 720
+      TabOrder = 14
+    end
+    object Label23: TLabel
+      Left = 128
+      Height = 15
+      Top = 204
+      Width = 21
+      Caption = 'Min'
+    end
+    object Step8Sec: TSpinEdit
+      Left = 168
+      Height = 23
+      Top = 200
+      Width = 66
+      MaxValue = 59
+      TabOrder = 15
+    end
+    object Label24: TLabel
+      Left = 240
+      Height = 15
+      Top = 204
+      Width = 18
+      Caption = 'Sec'
+    end
+    object Label25: TLabel
+      Left = 8
+      Height = 15
+      Top = 232
+      Width = 35
+      Caption = 'Step 9:'
+    end
+    object Step9Min: TSpinEdit
+      Left = 56
+      Height = 23
+      Top = 228
+      Width = 66
+      MaxValue = 720
+      TabOrder = 16
+    end
+    object Label26: TLabel
+      Left = 128
+      Height = 15
+      Top = 232
+      Width = 21
+      Caption = 'Min'
+    end
+    object Step9Sec: TSpinEdit
+      Left = 168
+      Height = 23
+      Top = 228
+      Width = 66
+      MaxValue = 59
+      TabOrder = 17
+    end
+    object Label27: TLabel
+      Left = 240
+      Height = 15
+      Top = 232
+      Width = 18
+      Caption = 'Sec'
+    end
+    object Label28: TLabel
+      Left = 8
+      Height = 15
+      Top = 260
+      Width = 41
+      Caption = 'Step 10:'
+    end
+    object Step10Min: TSpinEdit
+      Left = 56
+      Height = 23
+      Top = 256
+      Width = 66
+      MaxValue = 720
+      TabOrder = 18
+    end
+    object Label29: TLabel
+      Left = 128
+      Height = 15
+      Top = 260
+      Width = 21
+      Caption = 'Min'
+    end
+    object Step10Sec: TSpinEdit
+      Left = 168
+      Height = 23
+      Top = 256
+      Width = 66
+      MaxValue = 59
+      TabOrder = 19
+    end
+    object Label30: TLabel
+      Left = 240
+      Height = 15
+      Top = 260
+      Width = 18
+      Caption = 'Sec'
+    end
+    object Label31: TLabel
+      Left = 8
+      Height = 15
+      Top = 288
+      Width = 41
+      Caption = 'Step 11:'
+    end
+    object Step11Min: TSpinEdit
+      Left = 56
+      Height = 23
+      Top = 284
+      Width = 66
+      MaxValue = 720
+      TabOrder = 20
+    end
+    object Label32: TLabel
+      Left = 128
+      Height = 15
+      Top = 288
+      Width = 21
+      Caption = 'Min'
+    end
+    object Step11Sec: TSpinEdit
+      Left = 168
+      Height = 23
+      Top = 284
+      Width = 66
+      MaxValue = 59
+      TabOrder = 21
+    end
+    object Label33: TLabel
+      Left = 240
+      Height = 15
+      Top = 288
+      Width = 18
+      Caption = 'Sec'
+    end
+    object Label34: TLabel
+      Left = 8
+      Height = 15
+      Top = 316
+      Width = 41
+      Caption = 'Step 12:'
+    end
+    object Step12Min: TSpinEdit
+      Left = 56
+      Height = 23
+      Top = 312
+      Width = 66
+      MaxValue = 720
+      TabOrder = 22
+    end
+    object Label35: TLabel
+      Left = 128
+      Height = 15
+      Top = 316
+      Width = 21
+      Caption = 'Min'
+    end
+    object Step12Sec: TSpinEdit
+      Left = 168
+      Height = 23
+      Top = 312
+      Width = 66
+      MaxValue = 59
+      TabOrder = 23
+    end
+    object Label36: TLabel
+      Left = 240
+      Height = 15
+      Top = 316
+      Width = 18
+      Caption = 'Sec'
+    end
+    object AllMin: TSpinEdit
+      Left = 96
+      Height = 23
+      Top = 344
+      Width = 50
+      MaxValue = 720
+      TabOrder = 24
+    end
+    object Label41: TLabel
+      Left = 152
+      Height = 15
+      Top = 348
+      Width = 21
+      Caption = 'Min'
+    end
+    object AllSec: TSpinEdit
+      Left = 184
+      Height = 23
+      Top = 344
+      Width = 50
+      MaxValue = 59
+      TabOrder = 25
+    end
+    object Label42: TLabel
+      Left = 240
+      Height = 15
+      Top = 348
+      Width = 18
+      Caption = 'Sec'
+    end
+    object AllSetBtn: TButton
+      Left = 8
+      Height = 25
+      Top = 344
+      Width = 75
+      Caption = 'All set to'
+      TabOrder = 26
+      OnClick = AllSetBtnClick
+    end
+  end
+  object Label37: TLabel
+    Left = 16
+    Height = 15
+    Top = 460
+    Width = 56
+    Caption = 'Hold time:'
+  end
+  object HoldTime: TSpinEdit
+    Left = 112
+    Height = 23
+    Top = 456
+    Width = 96
+    MaxValue = 500
+    TabOrder = 3
+  end
+  object Label38: TLabel
+    Left = 216
+    Height = 15
+    Top = 460
+    Width = 29
+    Caption = 'mSec'
+  end
+  object Label39: TLabel
+    Left = 16
+    Height = 15
+    Top = 492
+    Width = 85
+    Caption = 'Solenoid power:'
+  end
+  object SoleniodPower: TSpinEdit
+    Left = 112
+    Height = 23
+    Top = 488
+    Width = 96
+    MaxValue = 255
+    TabOrder = 4
+  end
+  object Label40: TLabel
+    Left = 216
+    Height = 15
+    Top = 492
+    Width = 37
+    Caption = '(0-255)'
+  end
+  object CloseBtn: TButton
+    Left = 205
+    Height = 25
+    Top = 552
+    Width = 75
+    Caption = 'Close'
+    TabOrder = 5
+    OnClick = CloseBtnClick
+  end
+  object UploadBtn: TButton
+    Left = 8
+    Height = 25
+    Top = 552
+    Width = 75
+    Caption = 'Upload'
+    Enabled = False
+    TabOrder = 6
+    OnClick = UploadBtnClick
+  end
+  object Label43: TLabel
+    Left = 16
+    Height = 15
+    Top = 524
+    Width = 52
+    Caption = 'Skip time:'
+  end
+  object SkipTime: TSpinEdit
+    Left = 112
+    Height = 23
+    Top = 520
+    Width = 96
+    MaxValue = 60000
+    TabOrder = 7
+  end
+  object Label44: TLabel
+    Left = 216
+    Height = 15
+    Top = 524
+    Width = 29
+    Caption = 'mSec'
+  end
+end

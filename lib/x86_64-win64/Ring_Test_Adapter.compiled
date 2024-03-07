@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Compiler Value="C:\lazarus\fpc\3.2.2\bin\x86_64-win64\fpc.exe" Date="1464382100"/>
+  <Params Value=" -MObjFPC -Scghi -CX -O1 -gw3 -gl -Xg -XX -WG -l -vewnhibq -FiC:\Users\ITsukanov\Documents\Lazarus\Ring_Test_Adapter\lib\x86_64-win64 -FuC:\lazarus\lcl\units\x86_64-win64\win32 -FuC:\lazarus\lcl\units\x86_64-win64 -FuC:\lazarus\components\freetype\lib\x86_64-win64 -FuC:\lazarus\components\synapse\source\lib\lib\x86_64-win64 -FuC:\lazarus\components\lazutils\lib\x86_64-win64 -FuC:\lazarus\packager\units\x86_64-win64 -FuC:\Users\ITsukanov\Documents\Lazarus\Ring_Test_Adapter\ -FUC:\Users\ITsukanov\Documents\Lazarus\Ring_Test_Adapter\lib\x86_64-win64\ -FEC:\Users\ITsukanov\Documents\Lazarus\Ring_Test_Adapter\ -oC:\Users\ITsukanov\Documents\Lazarus\Ring_Test_Adapter\Ring_Test_Adapter.exe -dLCL -dLCLwin32 Ring_Test_Adapter.lpr"/>
+</CONFIG>
