@@ -15,10 +15,11 @@ bool notSafety = false;
 
 bool cycleStarted = false;
 bool ledOn = true;
-int16_t steps[12];
+int16_t steps[14];
 int16_t holdTime;
+int16_t skipedStepTime;
 byte solednoidPower;
-int skipedStepTime;
+
 int32_t stepTime;
 
 void setup() {
@@ -27,14 +28,14 @@ void setup() {
   pinMode(buttonPin, INPUT);
   Serial.begin(9600);
   Serial.flush();
-  for ( int i=0; i <= 11; i++ ) {
+  for ( int i=0; i <= 13; i++ ) {
     steps[i] = eeprom_read_word((uint16_t*)(i * 2));
   }
   if (steps[0] == 0) stepTime = skipedStepTime;
   else stepTime = steps[0] * 1000;
-  holdTime = eeprom_read_word((uint16_t*)24);
-  skipedStepTime = eeprom_read_word((uint16_t*)26);
-  solednoidPower = EEPROM.read(28);
+  holdTime = eeprom_read_word((uint16_t*)28);
+  skipedStepTime = eeprom_read_word((uint16_t*)30);
+  solednoidPower = EEPROM.read(32);
   digitalWrite(ledPin, HIGH);
 }
 
@@ -51,7 +52,7 @@ void loop() {
       input = Serial.readString();
       byte inputLen = input.length();
       if (input == "query") {
-          for ( int i=0; i <= 11; i++ ) dataOutput += String(steps[i]) + ";";
+          for ( int i=0; i <= 13; i++ ) dataOutput += String(steps[i]) + ";";
           dataOutput += String(holdTime) + ";";
           dataOutput += String(skipedStepTime) + ";";
           dataOutput += String(solednoidPower) + ";";
@@ -62,10 +63,10 @@ void loop() {
               for ( int i=0; i < inputLen; i++ ) {
                 if (input[i] != ';') wStr += input[i];
                 else {
-                  if (paramNumber < 15) {
+                  if (paramNumber < 17) {
                     eeprom_write_word((uint16_t*)(paramNumber * 2), (uint16_t)wStr.toInt()); 
                   }
-                  else EEPROM.write(28, (byte)wStr.toInt());
+                  else EEPROM.write(32, (byte)wStr.toInt());
                   wStr = "";
                   paramNumber++;
                 }
@@ -95,7 +96,7 @@ void loop() {
         analogWrite(solenoidPin, solednoidPower);
         digitalWrite(LED_BUILTIN, HIGH);
         PreMillisForHold = currentMillis;
-        if (currentStep < 12) {
+        if (currentStep < 14) {
           currentStep++;
           if (steps[currentStep - 1] == 0) stepTime = skipedStepTime;
           else stepTime = steps[currentStep - 1] * 1000;
@@ -129,12 +130,12 @@ void loop() {
 0 - Step1 (Lo) in sec
 1 - Step1 (Hi) 
 ...
-22 - Step12 (Lo) Step number * 2 - 1
-23 - Step12 (Hi) 
-24 - Hold time in msec (Lo)
-25 - Hold time in msec (Hi)
-26 - skipedStepTime (Lo)
-27 - skipedStepTime (Hi)
-28 - Solednoid power 0-255
+26 - Step14 (Lo) (Step number - 1) * 2
+27 - Step14 (Hi) 
+28 - Hold time in msec (Lo)
+29 - Hold time in msec (Hi)
+30 - skipedStepTime (Lo)
+31 - skipedStepTime (Hi)
+32 - Solednoid power 0-255
  */
  

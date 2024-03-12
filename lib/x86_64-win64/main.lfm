@@ -1,11 +1,16 @@
 object RT: TRT
-  Left = 2015
-  Height = 585
-  Top = -706
+  Left = 2114
+  Height = 641
+  Top = -700
   Width = 290
+  BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'RT'
-  ClientHeight = 585
+  ClientHeight = 641
   ClientWidth = 290
+  Constraints.MaxHeight = 641
+  Constraints.MaxWidth = 290
+  Constraints.MinHeight = 585
+  Constraints.MinWidth = 290
   OnCreate = FormCreate
   LCLVersion = '3.0.0.2'
   object COMselectCB: TComboBox
@@ -27,11 +32,11 @@ object RT: TRT
   end
   object GroupBox1: TGroupBox
     Left = 8
-    Height = 400
+    Height = 456
     Top = 48
     Width = 272
     Caption = 'Cycle timing'
-    ClientHeight = 380
+    ClientHeight = 436
     ClientWidth = 268
     TabOrder = 2
     object Label1: TLabel
@@ -481,7 +486,7 @@ object RT: TRT
     object AllMin: TSpinEdit
       Left = 96
       Height = 23
-      Top = 344
+      Top = 402
       Width = 50
       MaxValue = 720
       TabOrder = 24
@@ -489,14 +494,14 @@ object RT: TRT
     object Label41: TLabel
       Left = 152
       Height = 15
-      Top = 348
+      Top = 408
       Width = 21
       Caption = 'Min'
     end
     object AllSec: TSpinEdit
       Left = 184
       Height = 23
-      Top = 344
+      Top = 402
       Width = 50
       MaxValue = 59
       TabOrder = 25
@@ -504,31 +509,105 @@ object RT: TRT
     object Label42: TLabel
       Left = 240
       Height = 15
-      Top = 348
+      Top = 408
       Width = 18
       Caption = 'Sec'
     end
     object AllSetBtn: TButton
       Left = 8
       Height = 25
-      Top = 344
+      Top = 400
       Width = 75
       Caption = 'All set to'
       TabOrder = 26
       OnClick = AllSetBtnClick
     end
+    object Label45: TLabel
+      Left = 8
+      Height = 15
+      Top = 344
+      Width = 41
+      Caption = 'Step 13:'
+    end
+    object Step13Min: TSpinEdit
+      Left = 56
+      Height = 23
+      Top = 340
+      Width = 66
+      MaxValue = 720
+      TabOrder = 27
+    end
+    object Label46: TLabel
+      Left = 128
+      Height = 15
+      Top = 344
+      Width = 21
+      Caption = 'Min'
+    end
+    object Step13Sec: TSpinEdit
+      Left = 168
+      Height = 23
+      Top = 340
+      Width = 66
+      MaxValue = 59
+      TabOrder = 28
+    end
+    object Label47: TLabel
+      Left = 240
+      Height = 15
+      Top = 344
+      Width = 18
+      Caption = 'Sec'
+    end
+    object Label48: TLabel
+      Left = 8
+      Height = 15
+      Top = 372
+      Width = 41
+      Caption = 'Step 14:'
+    end
+    object Step14Min: TSpinEdit
+      Left = 56
+      Height = 23
+      Top = 368
+      Width = 66
+      MaxValue = 720
+      TabOrder = 29
+    end
+    object Label49: TLabel
+      Left = 128
+      Height = 15
+      Top = 372
+      Width = 21
+      Caption = 'Min'
+    end
+    object Step14Sec: TSpinEdit
+      Left = 168
+      Height = 23
+      Top = 368
+      Width = 66
+      MaxValue = 59
+      TabOrder = 30
+    end
+    object Label50: TLabel
+      Left = 240
+      Height = 15
+      Top = 372
+      Width = 18
+      Caption = 'Sec'
+    end
   end
   object Label37: TLabel
     Left = 16
     Height = 15
-    Top = 460
+    Top = 520
     Width = 56
     Caption = 'Hold time:'
   end
   object HoldTime: TSpinEdit
     Left = 112
     Height = 23
-    Top = 456
+    Top = 512
     Width = 96
     MaxValue = 500
     TabOrder = 3
@@ -536,21 +615,21 @@ object RT: TRT
   object Label38: TLabel
     Left = 216
     Height = 15
-    Top = 460
+    Top = 584
     Width = 29
     Caption = 'mSec'
   end
   object Label39: TLabel
     Left = 16
     Height = 15
-    Top = 492
+    Top = 552
     Width = 85
     Caption = 'Solenoid power:'
   end
   object SoleniodPower: TSpinEdit
     Left = 112
     Height = 23
-    Top = 488
+    Top = 544
     Width = 96
     MaxValue = 255
     TabOrder = 4
@@ -558,14 +637,14 @@ object RT: TRT
   object Label40: TLabel
     Left = 216
     Height = 15
-    Top = 492
+    Top = 552
     Width = 37
     Caption = '(0-255)'
   end
   object CloseBtn: TButton
     Left = 205
     Height = 25
-    Top = 552
+    Top = 608
     Width = 75
     Caption = 'Close'
     TabOrder = 5
@@ -574,7 +653,7 @@ object RT: TRT
   object UploadBtn: TButton
     Left = 8
     Height = 25
-    Top = 552
+    Top = 608
     Width = 75
     Caption = 'Upload'
     Enabled = False
@@ -584,14 +663,14 @@ object RT: TRT
   object Label43: TLabel
     Left = 16
     Height = 15
-    Top = 524
+    Top = 584
     Width = 52
     Caption = 'Skip time:'
   end
   object SkipTime: TSpinEdit
     Left = 112
     Height = 23
-    Top = 520
+    Top = 576
     Width = 96
     MaxValue = 60000
     TabOrder = 7
@@ -599,7 +678,7 @@ object RT: TRT
   object Label44: TLabel
     Left = 216
     Height = 15
-    Top = 524
+    Top = 520
     Width = 29
     Caption = 'mSec'
   end

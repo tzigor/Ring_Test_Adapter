@@ -14,6 +14,12 @@ type
 
   TRT = class(TForm)
     AllSetBtn: TButton;
+    Label45: TLabel;
+    Label46: TLabel;
+    Label47: TLabel;
+    Label48: TLabel;
+    Label49: TLabel;
+    Label50: TLabel;
     SkipTime: TSpinEdit;
     Label41: TLabel;
     Label42: TLabel;
@@ -21,6 +27,10 @@ type
     AllSec: TSpinEdit;
     Label43: TLabel;
     Label44: TLabel;
+    Step13Min: TSpinEdit;
+    Step14Min: TSpinEdit;
+    Step13Sec: TSpinEdit;
+    Step14Sec: TSpinEdit;
     UploadBtn: TButton;
     CloseBtn: TButton;
     ConnectBtn: TButton;
@@ -146,7 +156,7 @@ var
    SendData        : String = '';
    receivedMessage : String;
 begin
-  for i:=1 to 12 do
+  for i:=1 to 14 do
     SendData:= SendData + IntToStr(TSpinEdit(RT.FindComponent('Step' + IntToStr(i) + 'Min')).value * 60 +
                                    TSpinEdit(RT.FindComponent('Step' + IntToStr(i) + 'Sec')).value) + ';';
   SendData:= SendData + IntToStr(HoldTime.Value) + ';';
@@ -185,15 +195,15 @@ begin
           if receivedData[n] <> ';' then wStr:= wStr + receivedData[n]
           else begin
             Inc(ParamNumber);
-            if ParamNumber <= 12 then begin
+            if ParamNumber <= 14 then begin
               Secs:= StrToInt(wStr);
               TSpinEdit(RT.FindComponent('Step' + IntToStr(ParamNumber) + 'Min')).value:= Secs Div 60;
               if Secs < 60 then TSpinEdit(RT.FindComponent('Step' + IntToStr(ParamNumber) + 'Sec')).value:= Secs
               else TSpinEdit(RT.FindComponent('Step' + IntToStr(ParamNumber) + 'Sec')).value:= Secs - (Secs Div 60) * 60;
             end
-            else if ParamNumber = 13 then HoldTime.Value:= StrToInt(wStr)
-                 else if ParamNumber = 14 then SoleniodPower.Value:= StrToInt(wStr)
-                      else if ParamNumber = 15 then SkipTime.Value:= StrToInt(wStr);
+            else if ParamNumber = 15 then HoldTime.Value:= StrToInt(wStr)
+                 else if ParamNumber = 16 then SkipTime.Value:= StrToInt(wStr)
+                      else if ParamNumber = 17 then SoleniodPower.Value:= StrToInt(wStr);
             wStr:= '';
           end;
           Inc(n);
@@ -212,7 +222,7 @@ end;
 procedure TRT.AllSetBtnClick(Sender: TObject);
 var i : Byte;
 begin
-  for i:=1 to 12 do begin
+  for i:=1 to 14 do begin
     TSpinEdit(RT.FindComponent('Step' + IntToStr(i) + 'Min')).value:= AllMin.Value;
     TSpinEdit(RT.FindComponent('Step' + IntToStr(i) + 'Sec')).value:= AllSec.Value;
   end;
