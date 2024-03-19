@@ -1,7 +1,7 @@
 object RT: TRT
-  Left = 2015
+  Left = 2156
   Height = 641
-  Top = -706
+  Top = -578
   Width = 290
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'RT'
@@ -615,7 +615,7 @@ object RT: TRT
   object Label38: TLabel
     Left = 216
     Height = 15
-    Top = 552
+    Top = 584
     Width = 29
     Caption = 'mSec'
   end
@@ -637,7 +637,7 @@ object RT: TRT
   object Label40: TLabel
     Left = 216
     Height = 15
-    Top = 584
+    Top = 552
     Width = 37
     Caption = '(0-255)'
   end

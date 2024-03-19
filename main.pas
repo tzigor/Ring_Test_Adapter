@@ -162,6 +162,7 @@ begin
   SendData:= SendData + IntToStr(HoldTime.Value) + ';';
   SendData:= SendData + IntToStr(SkipTime.Value) + ';';
   SendData:= SendData + IntToStr(SoleniodPower.Value) + ';';
+  //ShowMessage(SendData);
   receivedMessage:= GetResponse(SendData);
   //ShowMessage(receivedMessage);
   if receivedMessage = 'success' then ShowMessage('Parameters saved successfully')

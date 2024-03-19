@@ -162,8 +162,9 @@ begin
   SendData:= SendData + IntToStr(HoldTime.Value) + ';';
   SendData:= SendData + IntToStr(SkipTime.Value) + ';';
   SendData:= SendData + IntToStr(SoleniodPower.Value) + ';';
+  ShowMessage(SendData);
   receivedMessage:= GetResponse(SendData);
-  //ShowMessage(receivedMessage);
+  ShowMessage(receivedMessage);
   if receivedMessage = 'success' then ShowMessage('Parameters saved successfully')
   else ShowMessage('Something went wrong :(');
 end;
@@ -188,7 +189,7 @@ begin
     ser.DTR := false; // comment this if needed
     Sleep(3000);
     receivedData:= GetResponse('query');
-    //ShowMessage(receivedData);
+    ShowMessage(receivedData);
     if receivedData <> 'Time out' then begin
        DataLength:= receivedData.Length;
        while n <= DataLength do begin

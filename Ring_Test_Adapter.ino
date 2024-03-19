@@ -15,10 +15,11 @@ bool notSafety = false;
 
 bool cycleStarted = false;
 bool ledOn = true;
-int16_t steps[14];
-int16_t holdTime;
-int16_t skipedStepTime;
+uint32_t steps[14];
+uint16_t holdTime;
+uint16_t skipedStepTime;
 byte solednoidPower;
+uint16_t memValue;
 
 int32_t stepTime;
 
@@ -28,14 +29,14 @@ void setup() {
   pinMode(buttonPin, INPUT);
   Serial.begin(9600);
   Serial.flush();
-  for ( int i=0; i <= 13; i++ ) {
-    steps[i] = eeprom_read_word((uint16_t*)(i * 2));
-  }
-  if (steps[0] == 0) stepTime = skipedStepTime;
-  else stepTime = steps[0] * 1000;
   holdTime = eeprom_read_word((uint16_t*)28);
   skipedStepTime = eeprom_read_word((uint16_t*)30);
   solednoidPower = EEPROM.read(32);
+  for ( int i=0; i <= 13; i++ ) {
+    memValue = (uint16_t*)eeprom_read_word((uint16_t*)(i * 2));
+    steps[i] = (uint32_t)memValue * 1000;
+    if (steps[i] == 0) steps[i] = skipedStepTime;
+  }
   digitalWrite(ledPin, HIGH);
 }
 
@@ -43,6 +44,7 @@ String input = "";
 String dataOutput = "";
 String wStr = "";
 byte paramNumber = 0;
+word pramToWrite;
 
 void loop() {
   
@@ -52,25 +54,30 @@ void loop() {
       input = Serial.readString();
       byte inputLen = input.length();
       if (input == "query") {
-          for ( int i=0; i <= 13; i++ ) dataOutput += String(steps[i]) + ";";
+          for ( int i=0; i <= 13; i++ ) dataOutput += String((uint16_t)(steps[i] / 1000)) + ";";
           dataOutput += String(holdTime) + ";";
           dataOutput += String(skipedStepTime) + ";";
           dataOutput += String(solednoidPower) + ";";
           Serial.print(dataOutput);
           input = "";
       }
-      else if (inputLen > 26) {   
+      else if (inputLen > 36) {   
               for ( int i=0; i < inputLen; i++ ) {
                 if (input[i] != ';') wStr += input[i];
                 else {
                   if (paramNumber < 17) {
                     eeprom_write_word((uint16_t*)(paramNumber * 2), (uint16_t)wStr.toInt()); 
+//                    delay(50);
+//                      pramToWrite = (word)wStr.toInt();
+//                      EEPROM.write(paramNumber * 2, lowByte(pramToWrite));
+//                      EEPROM.write(paramNumber * 2 + 1, highByte(pramToWrite));
                   }
                   else EEPROM.write(32, (byte)wStr.toInt());
                   wStr = "";
                   paramNumber++;
                 }
               }
+//              Serial.print(input);
               Serial.print("success");
               input = "";
            } 
@@ -83,31 +90,25 @@ void loop() {
     if (cycleStarted) PreMillisForCycle = currentMillis;
     else {
       currentStep = 1;
-      if (steps[currentStep - 1] == 0) stepTime = skipedStepTime;
-      else stepTime = steps[currentStep - 1] * 1000;
       ledOn = true;
       digitalWrite(ledPin, HIGH);
     }
   }
 
   if (cycleStarted) {
-    if ( currentMillis - PreMillisForCycle > stepTime ) {
+    if ( currentMillis - PreMillisForCycle > steps[currentStep - 1] ) {
         PreMillisForCycle = currentMillis;
         analogWrite(solenoidPin, solednoidPower);
         digitalWrite(LED_BUILTIN, HIGH);
         PreMillisForHold = currentMillis;
         if (currentStep < 14) {
           currentStep++;
-          if (steps[currentStep - 1] == 0) stepTime = skipedStepTime;
-          else stepTime = steps[currentStep - 1] * 1000;
         }
         else {
           cycleStarted = false;
           analogWrite(solenoidPin, 0);
           digitalWrite(LED_BUILTIN, LOW);
           currentStep = 1;
-          if (steps[currentStep - 1] == 0) stepTime = skipedStepTime;
-          else stepTime = steps[currentStep - 1] * 1000;
           ledOn = true;
           digitalWrite(ledPin, HIGH);
         }
