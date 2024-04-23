@@ -1,7 +1,7 @@
 object RT: TRT
-  Left = 2156
+  Left = 2148
   Height = 641
-  Top = -578
+  Top = -664
   Width = 290
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'RT'
@@ -12,6 +12,7 @@ object RT: TRT
   Constraints.MinHeight = 585
   Constraints.MinWidth = 290
   OnCreate = FormCreate
+  Position = poDefaultPosOnly
   LCLVersion = '3.0.0.2'
   object COMselectCB: TComboBox
     Left = 8

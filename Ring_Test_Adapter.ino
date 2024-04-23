@@ -3,15 +3,18 @@
 const int ledPin = 3;
 const int buttonPin = 4;
 const int solenoidPin = 6;
+const uint16_t buttonHoldTime = 100;  // mSec
 
 unsigned long currentMillis;
 unsigned long PreMillisForBlink = 0;
 unsigned long PreMillisForCycle = 0;
 unsigned long PreMillisForHold = 0;
+unsigned long PreMillisForHoldButton = 0;
 unsigned long PreMillisForSafety = 0;
 
 byte currentStep = 1;
 bool notSafety = false;
+bool buttonPressed = false;
 
 bool cycleStarted = false;
 bool ledOn = true;
@@ -21,12 +24,15 @@ uint16_t skipedStepTime;
 byte solednoidPower;
 uint16_t memValue;
 
+uint16_t blinkPeriod;
+
 int32_t stepTime;
 
 void setup() {
   pinMode(ledPin, OUTPUT);
   pinMode(solenoidPin, OUTPUT);
   pinMode(buttonPin, INPUT);
+  pinMode(buttonPin, INPUT_PULLUP);
   Serial.begin(9600);
   Serial.flush();
   holdTime = eeprom_read_word((uint16_t*)28);
@@ -38,6 +44,7 @@ void setup() {
     if (steps[i] == 0) steps[i] = skipedStepTime;
   }
   digitalWrite(ledPin, HIGH);
+  blinkPeriod = 500; 
 }
 
 String input = "";
@@ -67,10 +74,6 @@ void loop() {
                 else {
                   if (paramNumber < 17) {
                     eeprom_write_word((uint16_t*)(paramNumber * 2), (uint16_t)wStr.toInt()); 
-//                    delay(50);
-//                      pramToWrite = (word)wStr.toInt();
-//                      EEPROM.write(paramNumber * 2, lowByte(pramToWrite));
-//                      EEPROM.write(paramNumber * 2 + 1, highByte(pramToWrite));
                   }
                   else EEPROM.write(32, (byte)wStr.toInt());
                   wStr = "";
@@ -83,10 +86,19 @@ void loop() {
            } 
   }
 
+
   if (digitalRead(buttonPin) == LOW) {
+    PreMillisForHoldButton = currentMillis;
+    while (digitalRead(buttonPin) == LOW) { 
+      currentMillis = millis(); 
+    }
+    delay(10);
+    if ( currentMillis - PreMillisForHoldButton > buttonHoldTime ) buttonPressed = true;
+  } else buttonPressed = false; 
+
+  if (buttonPressed) {
+    blinkPeriod = 500; 
     cycleStarted = !cycleStarted;
-    while (digitalRead(buttonPin) == LOW) {};
-    delay(100);
     if (cycleStarted) PreMillisForCycle = currentMillis;
     else {
       currentStep = 1;
@@ -97,13 +109,16 @@ void loop() {
 
   if (cycleStarted) {
     if ( currentMillis - PreMillisForCycle > steps[currentStep - 1] ) {
-        PreMillisForCycle = currentMillis;
-        analogWrite(solenoidPin, solednoidPower);
-        digitalWrite(LED_BUILTIN, HIGH);
-        PreMillisForHold = currentMillis;
+        PreMillisForCycle = currentMillis; 
+        if (currentStep == 13) blinkPeriod = 60; 
         if (currentStep < 14) {
+          analogWrite(solenoidPin, 150);
+          delay(30);
+          analogWrite(solenoidPin, solednoidPower);
+          digitalWrite(LED_BUILTIN, HIGH);
+          PreMillisForHold = currentMillis;
           currentStep++;
-        }
+        }  
         else {
           cycleStarted = false;
           analogWrite(solenoidPin, 0);
@@ -119,7 +134,7 @@ void loop() {
     }    
   }
   
-  if ( currentMillis - PreMillisForBlink > 300 ) {
+  if ( currentMillis - PreMillisForBlink > blinkPeriod ) {
       PreMillisForBlink = currentMillis;
       ledOn = !ledOn;
       if (ledOn) digitalWrite(ledPin, HIGH);
